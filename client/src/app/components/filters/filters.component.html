@@ -1,0 +1,19 @@
+<div class="card filters">
+
+    <div class="card-header">
+        <strong>Search</strong>
+    </div>
+
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <label for="search">product name</label>
+                <input type="text" [(ngModel)]="this._productService.searchValue" name="searchValue" id="search"
+                    class="form-control">
+            </div>
+
+
+            <!-- <button class="btn btn-primary btn-block btn-sm">Search product</button> -->
+        </form>
+    </div>
+</div>

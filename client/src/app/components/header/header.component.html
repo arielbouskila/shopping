@@ -1,0 +1,7 @@
+<div>
+    <span>Hello </span><span class="userFirstName">{{user.firstName}}</span>
+    <div class="logout" *ngIf="user">
+        <button class="btn btn-primary" (click)="logout()">Logout</button>
+    </div>
+
+</div>

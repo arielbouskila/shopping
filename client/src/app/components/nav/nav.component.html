@@ -1,0 +1,11 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal">
+        <app-header></app-header>
+    </h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" (click)="_productService.getAllProducts()" [routerLink]="['/shop']">Shop</a>
+        <a class="p-2 text-dark btn" *ngFor="let category of _productService.categories" [category]="category"
+            (click)="_productService.getProductByCategory(category._id)">{{category.category_name}}</a>
+    </nav>
+    <!-- <a class="btn btn-outline-secondary">Logout</a> -->
+</div>
