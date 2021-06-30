@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/User.model");
-const Address = require('../models/Adress.model')
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const createHashedPassword = require('../auth')
 const passport = require("passport");
 const { isValid } = require('../authPassport')
@@ -26,7 +23,7 @@ router.post('/register', async (req, res, next) => {
 });
 
 //login
-router.post('/login', passport.authenticate('local', {}), (req, res) => {
+router.post('/login', passport.authenticate('local' ,{}), (req, res) => {
     res.send({
         message: 'login successeded',
         user: req.user

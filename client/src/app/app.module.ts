@@ -21,6 +21,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { StepTwoComponent } from './components/step-two/step-two.component';
 import { HomeComponent } from './components/home/home.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { OrderPageComponent } from './components/order-page/order-page.component';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { HomeComponent } from './components/home/home.component';
     SearchFilterPipe,
     StepTwoComponent,
     HomeComponent,
-
+    AdminComponent,
+    OrderPageComponent
   ],
   imports: [
     BrowserModule,

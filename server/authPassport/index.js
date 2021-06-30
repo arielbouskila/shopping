@@ -13,6 +13,7 @@ module.exports = {
                 return done(null, user);
             })
             .catch(err => {
+                console.log("in error")
                 return done(err);
             });
     },
@@ -23,6 +24,7 @@ module.exports = {
         done(null, user);
     },
     isValid: (req, res, next) => {
+        console.log(req.user);
         if (req.isAuthenticated()) {
             return next();
         }

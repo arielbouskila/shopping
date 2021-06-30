@@ -1,0 +1,36 @@
+<div class="admin-products">
+    <div class="card admin">
+        <div class="card-header">
+            <strong>Admin</strong>
+        </div>
+        <div class="card-body admin-products">
+            <form [formGroup]="productForm">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" name="productName" formControlName="productName" required class="form-control"/>
+                    <br />
+                    <label>Product Price</label>
+                    <input type="number" name="productPrice" formControlName="productPrice" required class="form-control"/>
+                    <br />
+                    <label>Product Image</label>
+                    <br />
+                    <input type="url" name="productImage" formControlName="productImage" required class="form-control"/>
+                    <br />
+                    <img [src]="productForm.get('productImage').value" *ngIf="productForm.get('productImage').value!==''" class='image'/>
+                    <br />
+                    <select formControlName="productCategory" name="productCategory" class="form-control">
+                        <option value="">Please choose</option>
+                        <option *ngFor="let category of categories" [value]="category._id">
+                            {{category.category_name}}
+                        </option>
+                    </select>
+
+                    <div class="button">
+                        <button *ngIf="isEdit===false" (click)="addProduct()">Add Product</button>
+                        <button *ngIf="isEdit===true" (click)="editProduct()">Edit
+                            Product</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>

@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const ProductSchema = require("../models/Product.model")
-const Product = mongoose.model("Products", ProductSchema);
+const Products = mongoose.model("Products", ProductSchema);
 
 //get all products 
 router.get('/', async (req, res) => {
-    const products = await Product.find({});
-    res.status(200).json({ products })
+    const products = await Products.find({});
+    res.json({products})
 });
 
 //get products by id
@@ -21,23 +21,33 @@ router.put('/update/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const product = req.body;
-        await upadteProduct(id, product);
+        await updateProduct(id, product);
         res.json({ success: true });
 
     } catch (err) {
-        console.log('controller: updateCart err', err.message)
         res.status(500).json({
             message: 'server error'
         });
     }
 });
+router.delete('/:id', async (req,res) => {
+    try {
+        const { id } = req.params;
+        const deleted = await Products.deleteOne({ _id: mongoose.Types.ObjectId(id)});
+        res.status(200).json({message:'deleted'});
+    } catch(err){
+        res.status(500).json({
+            message: 'server error'
+        });
+    }
+})
 
 //add product 
 router.post("/new", async (req, res) => {
     try {
         const { product_name, price, product_img, category } = req.body;
         console.log(product_name, price, product_img, category)
-        const newProduct = new Product({
+        const newProduct = new Products({
             product_name,
             price,
             product_img,
@@ -55,7 +65,7 @@ router.post("/new", async (req, res) => {
 
 
 
-const upadteProduct = async (id, product) => {
+const updateProduct = async (id, product) => {
     try {
         const result = await Product.updateOne({ _id: mongoose.Types.ObjectId(id) }, {
             $set: data

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { Product } from 'src/app/models/product'
 import { MessengerService } from 'src/app/services/messenger.service';
 
@@ -10,6 +10,7 @@ import { MessengerService } from 'src/app/services/messenger.service';
 export class ProductItemComponent implements OnInit {
 
   @Input() product: Product;
+  @Output() onRemove:EventEmitter<Product> = new EventEmitter<Product>();
 
   constructor(public _msgService: MessengerService) { }
 
@@ -18,5 +19,9 @@ export class ProductItemComponent implements OnInit {
 
   hendleAddToCart() {
     this._msgService.sendMsg(this.product)
+  }
+  handleRemoveFromProducts(){
+    this.onRemove.emit(this.product)
+
   }
 }

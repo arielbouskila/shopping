@@ -1,0 +1,26 @@
+<div class="orderPage">
+    <app-nav></app-nav>
+    <mat-grid-list cols="2" gutterSize="10px">
+        <button mat-flat-button color="accent" (click)="backToShop()">Back To Shop</button>
+        <mat-grid-tile>
+
+            <app-cart [cart]="cart" [isOrder]="true"></app-cart>
+
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-order [user]="user" *ngIf="user" (onOrderDemand)="orderDelivery($event)"></app-order>
+        </mat-grid-tile>
+
+
+    </mat-grid-list>
+    <ng-template #dialogAlert>
+        <h2 matDialogTitle>Order </h2>
+        <div>
+           Order received , here your receipt:<a [href]="link" target="_blank">Click Here</a>
+        </div>
+        <mat-dialog-actions>
+            <button mat-button matDialogClose>OK</button>
+        </mat-dialog-actions>
+    </ng-template>
+</div>

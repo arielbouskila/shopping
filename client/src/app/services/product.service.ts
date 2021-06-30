@@ -32,6 +32,10 @@ export class ProductService {
     );
   }
 
+  public getAllCategoriesNew() {
+    return this.http.get<any>('http://localhost:3000/category');
+  }
+
 
   public getProductByCategory(id: string) {
     return this.http.get(`http://localhost:3000/category/byCategory/${id}`).subscribe(
@@ -41,6 +45,14 @@ export class ProductService {
       },
       (err) => console.log(err)
     );
+  }
+
+  public addProduct(prod:Product){
+    return this.http.post('http://localhost:3000/products/new',prod);
+  }
+  public deleteProduct(prod:Product){
+    const id = prod._id;
+    return this.http.delete(`http://localhost:3000/products/${id}`);
   }
 
 }
